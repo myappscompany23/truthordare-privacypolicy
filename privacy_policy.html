@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truth or Dare - Gizlilik Politikası ve Kullanım Koşulları</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --accent: #fd79a8;
+            --light: #f7f7f7;
+            --dark: #2d3436;
+            --gray: #636e72;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --error: #d63031;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .logo-text h1 {
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .logo-text p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        .language-toggle {
+            background: var(--light);
+            border-radius: 30px;
+            padding: 8px;
+            display: flex;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .lang-btn {
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 900px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .policy-card, .terms-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            transition: var(--transition);
+        }
+        
+        .policy-card:hover, .terms-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h3 {
+            color: var(--dark);
+            margin: 25px 0 15px;
+            font-size: 20px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            color: var(--gray);
+        }
+        
+        ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            color: var(--gray);
+        }
+        
+        .highlight {
+            background: rgba(108, 92, 231, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+        
+        .contact-info {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            border-radius: var(--radius);
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .contact-info h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .email-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            display: inline-block;
+            margin-top: 10px;
+            transition: var(--transition);
+        }
+        
+        .email-link:hover {
+            text-decoration: underline;
+            transform: scale(1.05);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        .language-content {
+            display: none;
+        }
+        
+        .language-content.active {
+            display: block;
+        }
+        
+        .section-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Truth or Dare</h1>
+                    <p>Privacy Policy & Terms of Service</p>
+                </div>
+            </div>
+            <div class="language-toggle">
+                <button class="lang-btn active" data-lang="tr">
+                    <i class="fas fa-flag"></i> Türkçe
+                </button>
+                <button class="lang-btn" data-lang="en">
+                    <i class="fas fa-flag-usa"></i> English
+                </button>
+            </div>
+        </header>
+        
+        <div class="content-wrapper">
+            <div class="policy-card">
+                <div class="language-content active" id="policy-tr">
+                    <h2><i class="fas fa-shield-alt"></i> Gizlilik Politikası</h2>
+                    
+                    <p><strong>Truth or Dare</strong> ("biz", "uygulamamız") gizliliğinize saygı duyar ve kişisel bilgilerinizi korumayı taahhüt eder. Bu Gizlilik Politikası, uygulamamızı ("Uygulama") kullanırken bilgilerinizi nasıl topladığımızı, kullandığımızı, açıkladığımızı ve koruduğumuzu açıklar.</p>
+                    
+                    <p>Uygulamayı kullanarak bu politikada açıklanan bilgilerin toplanmasını ve kullanılmasını kabul etmiş olursunuz.</p>
+                    
+                    <h3><span class="section-number">1</span> Topladığımız Bilgiler</h3>
+                    <p>Uygulamayı geliştirmek ve size hizmet sunmak için çeşitli bilgiler toplarız.</p>
+                    
+                    <h4>a. Kullanıcının Bize Sağladığı Bilgiler (Hesap & Satın Alımlar)</h4>
+                    <ul>
+                        <li><strong>Hesap Bilgileri:</strong> E-posta, kullanıcı adı ve parola (Firebase Authentication).</li>
+                        <li><strong>Kullanıcı İçeriği:</strong> Uygulama içinde oluşturduğunuz içerikler.</li>
+                        <li><strong>Satın Alma Geçmişi:</strong> Google Cloud Firestore aracılığıyla bağlanan uygulama içi satın alma verileri.</li>
+                    </ul>
+                    
+                    <h4>b. Otomatik Olarak Toplanan Bilgiler (Kullanım & Tanılama)</h4>
+                    <ul>
+                        <li><strong>Kullanım Verileri:</strong> Cihaz bilgisi, etkileşimler, açılan ekranlar, işletim sistemi sürümü, cihaz tanımlayıcıları ve IP adresi.</li>
+                        <li><strong>Tanılama Verileri:</strong>
+                            <ul>
+                                <li>Çökme verileri (Firebase Crashlytics)</li>
+                                <li>Performans verileri (Firebase Performance Monitoring)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h4>c. Üçüncü Taraflardan Alınan Bilgiler (Reklam)</h4>
+                    <ul>
+                        <li><strong>Reklam Verileri:</strong> Google Ads tarafından gösterilen reklamlar.</li>
+                    </ul>
+                    
+                    <h3><span class="section-number">2</span> Bilgilerinizi Kullanım Amacımız</h3>
+                    <ul>
+                        <li>Uygulamayı sunmak ve sürdürmek</li>
+                        <li>Uygulamayı geliştirmek</li>
+                        <li>Reklam göstermek</li>
+                        <li>Sizinle iletişim kurmak</li>
+                    </ul>
+                    
+                    <h3><span class="section-number">3</span> İşleme Hukuki Dayanağı (AB Kullanıcıları İçin)</h3>
+                    <ul>
+                        <li>Sözleşmenin ifası</li>
+                        <li>Meşru menfaatler</li>
+                        <li>Kişiselleştirilmiş reklam için onay</li>
+                    </ul>
+                    
+                    <h3><span class="section-number">4</span> Bilgilerin Paylaşılması</h3>
+                    <ul>
+                        <li>Hizmet Sağlayıcılar (Firebase, Google Ads)</li>
+                        <li>Yasal zorunluluklar</li>
+                    </ul>
+                    
+                    <h3><span class="section-number">5</span> Veri Saklama</h3>
+                    <p>Bilgilerinizi yalnızca yasal yükümlülüklerimizi yerine getirmek, uyuşmazlıkları çözmek ve politikalarımızı uygulamak için gerektiği süre boyunca saklarız.</p>
+                    
+                    <h3><span class="section-number">6</span> Veri Koruma Haklarınız</h3>
+                    <p>Bilgilerinizi korumak için Firebase tarafından sağlanan endüstri standardı güvenlik uygulamalarını kullanırız. Ancak, hiçbir çevrimiçi hizmet %100 güvenli değildir. Uygulamayı kullanarak bu riski kabul etmiş sayılırsınız.</p>
+                    <ul>
+                        <li>Kişiselleştirilmiş reklamları cihaz ayarlarından veya Google Reklam Ayarlarından devre dışı bırakabilirsiniz.</li>
+                        <li><strong>contactmyappscompany23@gmail.com</strong> adresinden bize ulaşarak verilerinize erişebilir veya sildirebilirsiniz.</li>
+                    </ul>
+                    
+                    <h3><span class="section-number">7</span> Çocukların Gizliliği</h3>
+                    <p>Uygulamamız 13 yaş ve üzeri kullanıcılar için uygundur.</p>
+                    
+                    <h3><span class="section-number">8</span> Uluslararası Aktarımlar</h3>
+                    <p>Bilgileriniz, ülkeniz dışındaki sunuculara aktarılabilir. Uygun güvenlik önlemleri alınmaktadır.</p>
+                    
+                    <h3><span class="section-number">9</span> Uygulama İçi Satın Alımlar ve İade Politikası</h3>
+                    <p>Uygulamamız tüketilebilir uygulama içi satın alımlar sunmaktadır. Bu satın alımlar Google Play veya Apple App Store üzerinden güvenli bir şekilde gerçekleştirilir. Tüketilebilir uygulama içi satın alımlar iade edilmez, yasal zorunluluklar veya ilgili mağazaların politikaları dışında.</p>
+                    
+                    <h3><span class="section-number">10</span> Misafir Hesaplar</h3>
+                    <p>Uygulamayı hesap oluşturmadan misafir olarak kullanabilirsiniz. Ancak misafir olarak uygulama içi satın alma yaparsanız bu satın alımlar cihazınıza bağlı olabilir ve başka bir cihaza aktarılamayabilir. Satın alımlarınızın güvenliği için uygulama içi satın alma yapmadan önce bir hesap oluşturmanızı önemle tavsiye ederiz.</p>
+                    
+                    <h3><span class="section-number">11</span> Bu Gizlilik Politikasındaki Değişiklikler</h3>
+                    <p>Bu Gizlilik Politikası'nı güncelleyebiliriz. Güncellenmiş hâli bu sayfada, yeni yürürlük tarihiyle birlikte yayımlanacaktır.</p>
+                    
+                    <div class="contact-info">
+                        <h3><i class="fas fa-envelope"></i> İletişim</h3>
+                        <p>Sorularınız için bizimle iletişime geçebilirsiniz:</p>
+                        <a href="mailto:contactmyappscompany23@gmail.com" class="email-link">contactmyappscompany23@gmail.com</a>
+                    </div>
+                </div>
+                
+                <div class="language-content" id="policy-en">
+                    <h2><i class="fas fa-shield-alt"></i> Privacy Policy</h2>
+                    
+                    <p><strong>Truth or Dare</strong> ("we", "our app") respects your privacy and is committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and protect your information when you use our application ("the App").</p>
+                    
+                    <p>By using the App, you agree to the collection and use of information as described in this policy.</p>
+                    
+                    <h3><span class="section-number">1</span> Information We Collect</h3>
+                    <p>We collect various information to develop the App and provide services to you.</p>
+                    
+                    <h4>a. Information Provided by the User (Account & Purchases)</h4>
+                    <ul>
+                        <li><strong>Account Information:</strong> Email, username, and password (Firebase Authentication).</li>
+                        <li><strong>User Content:</strong> Content you create within the App.</li>
+                        <li><strong>Purchase History:</strong> In-app purchase data linked via Google Cloud Firestore.</li>
+                    </ul>
+                    
+                    <h4>b. Automatically Collected Information (Usage & Diagnostics)</h4>
+                    <ul>
+                        <li><strong>Usage Data:</strong> Device information, interactions, screens opened, operating system version, device identifiers, and IP address.</li>
+                        <li><strong>Diagnostic Data:</strong>
+                            <ul>
+                                <li>Crash data (Firebase Crashlytics)</li>
+                                <li>Performance data (Firebase Performance Monitoring)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h4>c. Information from Third Parties (Advertising)</h4>
+                    <ul>
+                        <li><strong>Advertising Data:</strong> Ads displayed by Google Ads.</li>
+                    </ul>
+                    
+                    <h3><span class="section-number">2</span> How We Use Your Information</h3>
+                    <ul>
+                        <li>To provide and maintain the App</li>
+                        <li>To improve the App</li>
+                        <li>To display advertisements</li>
+                        <li>To communicate with you</li>
+                    </ul>
+                    
+                    <h3><span class="section-number">3</span> Legal Basis for Processing (For EU Users)</h3>
+                    <ul>
+                        <li>Performance of a contract</li>
+                        <li>Legitimate interests</li>
+                        <li>Consent for personalized advertising</li>
+                    </ul>
+                    
+                    <h3><span class="section-number">4</span> Sharing of Information</h3>
+                    <ul>
+                        <li>Service Providers (Firebase, Google Ads)</li>
+                        <li>Legal requirements</li>
+                    </ul>
+                    
+                    <h3><span class="section-number">5</span> Data Retention</h3>
+                    <p>We retain your information only for as long as necessary to fulfill our legal obligations, resolve disputes, and enforce our policies.</p>
+                    
+                    <h3><span class="section-number">6</span> Your Data Protection Rights</h3>
+                    <p>We use industry-standard security practices provided by Firebase to protect your information. However, no online service is 100% secure. By using the App, you acknowledge and accept this risk.</p>
+                    <ul>
+                        <li>You can disable personalized ads from your device settings or Google Ads Settings.</li>
+                        <li>You can access or request deletion of your data by contacting us at <strong>contactmyappscompany23@gmail.com</strong>.</li>
+                    </ul>
+                    
+                    <h3><span class="section-number">7</span> Children's Privacy</h3>
+                    <p>Our App is suitable for users aged 13 and above.</p>
+                    
+                    <h3><span class="section-number">8</span> International Transfers</h3>
+                    <p>Your information may be transferred to servers located outside your country. Appropriate security measures are taken.</p>
+                    
+                    <h3><span class="section-number">9</span> In-App Purchases and Refund Policy</h3>
+                    <p>Our App offers consumable in-app purchases. These purchases are made securely through Google Play or Apple App Store. Consumable in-app purchases are non-refundable, except as required by law or the policies of the respective stores.</p>
+                    
+                    <h3><span class="section-number">10</span> Guest Accounts</h3>
+                    <p>You can use the App as a guest without creating an account. However, if you make in-app purchases as a guest, these purchases may be tied to your device and may not be transferable to another device. For the security of your purchases, we strongly recommend creating an account before making in-app purchases.</p>
+                    
+                    <h3><span class="section-number">11</span> Changes to this Privacy Policy</h3>
+                    <p>We may update this Privacy Policy. The updated version will be posted on this page with the new effective date.</p>
+                    
+                    <div class="contact-info">
+                        <h3><i class="fas fa-envelope"></i> Contact</h3>
+                        <p>If you have any questions, you can contact us at:</p>
+                        <a href="mailto:contactmyappscompany23@gmail.com" class="email-link">contactmyappscompany23@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="terms-card">
+                <div class="language-content active" id="terms-tr">
+                    <h2><i class="fas fa-file-contract"></i> Kullanım Koşulları</h2>
+                    
+                    <h3><span class="section-number">1</span> Koşulları Kabul</h3>
+                    <p>Lütfen bu Kullanım Koşullarını ("Koşullar") uygulamamızı ("Uygulama") kullanmadan önce dikkatlice okuyun. Uygulamaya erişerek veya kullanarak, bu Koşullar ile bağlı olmayı kabul etmiş olursunuz.</p>
+                    
+                    <h3><span class="section-number">2</span> Uygunluk</h3>
+                    <p>Uygulamayı kullanmak için en az 13 yaşında olmalısınız. Uygulamayı kullanarak bu yaş şartını karşıladığınızı teyit edersiniz.</p>
+                    
+                    <h3><span class="section-number">3</span> Uygulamanın Kullanımı</h3>
+                    <p>Uygulama sadece eğlence amaçlıdır (grup oyunları, görevler ve meydan okumalar). Uygulamayı kötüye kullanmamayı veya yasa dışı amaçlarla kullanmamayı kabul edersiniz.</p>
+                    
+                    <h3><span class="section-number">4</span> Hesaplar</h3>
+                    <p>Belirli özellikleri kullanmak için bir kullanıcı adı ve e-posta adresi ile hesap oluşturmalısınız. Hesabınızın güvenliğini sağlamak sizin sorumluluğunuzdadır. Bu Koşulları ihlal eden hesapları askıya alma veya sonlandırma hakkımız saklıdır.</p>
+                    
+                    <h3><span class="section-number">5</span> Veri ve Gizlilik</h3>
+                    <p>Uygulamayı kullanarak Gizlilik Politikamızı kabul etmiş olursunuz. Veriler, Firebase kullanılarak güvenli bir şekilde saklanır ve yönetilir.</p>
+                    
+                    <h3><span class="section-number">6</span> Sorumluluk Sınırlaması</h3>
+                    <p>Uygulama herhangi bir garanti olmaksızın "olduğu gibi" sunulur. Uygulamanın kullanımından doğan herhangi bir hasar, kayıp veya sonuçtan sorumlu değiliz.</p>
+                    
+                    <h3><span class="section-number">7</span> Fesih</h3>
+                    <p>Bu Koşulları ihlal ederseniz veya hizmeti kötüye kullanırsanız, Uygulamaya erişiminizi askıya alma veya sonlandırma hakkımız saklıdır.</p>
+                    
+                    <h3><span class="section-number">8</span> Değişiklikler</h3>
+                    <p>Bu Koşulları istediğimiz zaman değiştirme veya güncelleme hakkımız saklıdır. Uygulamayı kullanmaya devam etmeniz, güncellenmiş Koşulları kabul ettiğiniz anlamına gelir.</p>
+                    
+                    <h3><span class="section-number">9</span> İletişim</h3>
+                    <p>Bu Koşullar hakkında sorularınız varsa, lütfen bizimle iletişime geçin: <strong>contactmyappscompany23@gmail.com</strong></p>
+                    
+                    <div class="highlight">
+                        <p><i class="fas fa-info-circle"></i> <strong>Önemli Not:</strong> Bu belgelerde belirtilen yaş sınırı 13 olarak belirlenmiştir.</p>
+                    </div>
+                </div>
+                
+                <div class="language-content" id="terms-en">
+                    <h2><i class="fas fa-file-contract"></i> Terms of Service</h2>
+                    
+                    <h3><span class="section-number">1</span> Acceptance of Terms</h3>
+                    <p>Please read these Terms of Service ("Terms") carefully before using our application ("the App"). By accessing or using the App, you agree to be bound by these Terms.</p>
+                    
+                    <h3><span class="section-number">2</span> Eligibility</h3>
+                    <p>You must be at least 13 years old to use the App. By using the App, you confirm that you meet this age requirement.</p>
+                    
+                    <h3><span class="section-number">3</span> Use of the App</h3>
+                    <p>The app is intended for entertainment purposes only (group games, tasks, and challenges). You agree not to misuse the app or use it for illegal purposes.</p>
+                    
+                    <h3><span class="section-number">4</span> Accounts</h3>
+                    <p>To use certain features, you must create an account with a username and email address. You are responsible for keeping your account secure. We reserve the right to suspend or terminate accounts that violate these Terms.</p>
+                    
+                    <h3><span class="section-number">5</span> Data and Privacy</h3>
+                    <p>By using the App, you agree to our Privacy Policy. Data is stored and managed securely using Firebase.</p>
+                    
+                    <h3><span class="section-number">6</span> Limitation of Liability</h3>
+                    <p>The App is provided "as is" without any warranties. We are not responsible for any damages, losses, or consequences resulting from the use of the App.</p>
+                    
+                    <h3><span class="section-number">7</span> Termination</h3>
+                    <p>We may suspend or terminate your access to the App if you violate these Terms or misuse the service.</p>
+                    
+                    <h3><span class="section-number">8</span> Changes</h3>
+                    <p>We reserve the right to modify or update these Terms at any time. Continued use of the App constitutes acceptance of the updated Terms.</p>
+                    
+                    <h3><span class="section-number">9</span> Contact</h3>
+                    <p>If you have any questions about these Terms, please contact us at: <strong>contactmyappscompany23@gmail.com</strong></p>
+                    
+                    <div class="highlight">
+                        <p><i class="fas fa-info-circle"></i> <strong>Important Note:</strong> The age limit specified in these documents is set to 13.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2026 Truth or Dare. Tüm hakları saklıdır. | All rights reserved.</p>
+        </footer>
+        
+        <div class="back-to-top" id="backToTop">
+            <i class="fas fa-chevron-up"></i>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            
+            langButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    
+                    langButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    if (lang === 'tr') {
+                        document.getElementById('policy-tr').classList.add('active');
+                        document.getElementById('policy-en').classList.remove('active');
+                        document.getElementById('terms-tr').classList.add('active');
+                        document.getElementById('terms-en').classList.remove('active');
+                    } else {
+                        document.getElementById('policy-tr').classList.remove('active');
+                        document.getElementById('policy-en').classList.add('active');
+                        document.getElementById('terms-tr').classList.remove('active');
+                        document.getElementById('terms-en').classList.add('active');
+                    }
+                });
+            });
+            
+            const backToTopButton = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
